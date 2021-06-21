@@ -9,8 +9,13 @@ Page({
     data: {
         date: Until.formatTime(new Date()).date,
         time: Until.formatTime(new Date()).time,
-        account_type_arr: ['玫瑰', '绣球', '百合', '向日葵', '雏菊', '剑兰', '自定义1', '自定义2'],
-        account_type : 0,
+        rawData: [],
+        multiArray: [['宴会庆典', '峰会论坛', '商业活动'], ["协会活动", "慈善活动", "答谢活动", "区块链", "人工智能", "大数据", "品牌推广", "开业庆典", "展会活动"]],
+        multiIndex: [0, 0],
+        objectMultiArray: [],
+        // '玫瑰', '绣球', '百合', '向日葵', '雏菊', '剑兰', ‘耗材:[花瓶，保鲜剂]’
+        //account_type_arr: ['玫瑰', '绣球', '百合', '向日葵', '雏菊', '剑兰', '自定义1', '自定义2'],
+        //account_type : 0,
         amount: '',
         unit_value: '',
         sum_value : '',
@@ -31,13 +36,43 @@ Page({
         })
     },
 
+    bindMultiPickerChange: function(e){
+        this.setData({
+            multiIndex: e.detail.value
+        })
+    },
+    bindMultiPickerColumnChange: function(e){
+        var data = {
+            multiArray: this.data.multiArray,
+            multiIndex: this.data.multiIndex
+          }
+          data.multiIndex[e.detail.column] = e.detail.value;
+          switch (e.detail.column) {
+            case 0:
+              switch (data.multiIndex[0]) {
+                case 0:
+                  data.multiArray[1] = ["协会活动", "慈善活动", "答谢活动"];
+                  break;
+                case 1:
+                  data.multiArray[1] = ["区块链", "人工智能", "大数据"];
+                  break;
+                case 2:
+                  data.multiArray[1] = ["品牌推广", "开业庆典", "展会活动"];
+                  break;
+              }
+              data.multiIndex[1] = 0;
+              break;
+          }
+          this.setData(data);
+    },
+/*
     // 品种
     bindCountChange: function(e){
         this.setData({
             account_type: e.detail.value
         })
     },
-
+*/
     // 数量
     bindAmount: function(e){
         this.setData({
@@ -83,7 +118,7 @@ Page({
             unit_value: this.data.unit_value,
             sum_value: this.data.sum_value,
             remarks_value: this.data.remarks_value,
-            account_type: this.data.account_type,
+            //account_type: this.data.account_type,
             billTypeNumber: this.billTypeNumber(this.data.account_type - 0),
             consumption_or_earn: 0
         };

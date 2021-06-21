@@ -26,7 +26,7 @@
     </view>
 
     <progress percent="0" stroke-width="2" />
-
+<!--
     <view class="section">
         <picker value="{{account_type}}" bindchange="bindCountChange" range="{{account_type_arr}}">
             <view class="section__title">品种:</view>
@@ -37,17 +37,19 @@
         </picker>
     </view>
     <progress percent="0" stroke-width="2" />
-
-    <!-- 品种 -->
-    <!--
+-->
     <view class="section">
         <view class="section__title">品种:</view>
-        <view class="text_right">
-            <input type="text" bindinput="bindVariety" value="{{variety}}"/>
+        <view class="right">
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+	        <view class="picker">
+            {{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}
+	        </view>
+        </picker>
         </view>
     </view>
     <progress percent="0" stroke-width="2" />
-    -->
+
     <!-- 数量 -->
     <view class="section">
         <view class="section__title">数量(个):</view>
