@@ -1,0 +1,69 @@
+<!--pages/bill/bill.wxml-->
+<view class="content">
+    <text class="text_blue">账单:</text>
+    <icon style="color:#999;clear:both;float:right;" class="fa fa-bookmark fa-lg" bindtap="selectResult"/>
+    <view  wx:if="{{isShow==true}}" class="right_fix">
+        <view  class="clear_box">
+            <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+                <view class="section__title">日期:</view>
+                <view class="right">
+                    <text>{{date}}</text>
+                    <icon class="fa fa-angle-right fa-fw"/> 
+                </view>
+            </picker>
+        </view>
+        <view class="clear_box">
+            <checkbox-group bindchange="checkboxChange" class="check_box">
+                <label class="checkbox" wx:for="{{items}}" wx:key="{{index}}">
+                    <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+                </label>
+            </checkbox-group>
+        </view>
+        
+        <view class="button_box">
+            <button type="primary" size="default" bindtap="confirmSearch"> 确认 </button>
+            <button type="default" size="default" bindtap="cancelSearch"> 重置 </button>
+        </view>
+        
+    </view>
+    <view class="no_bill" wx:if="{{bill_arr.length==0}}">
+        <text>没有账单</text>
+    </view>
+
+    <view class="bill_box">
+        <view class="bill_item" wx:for="{{bill_arr}}" wx:key="{{index}}">
+            <view>
+                <view class="information_box">
+                    <text class="font_bold" style="{{ item.consumption_or_earn == 1 ? 'color:#ff4949':'color:#1AAD19'}}">{{item.remarks_value ||(item.consumption_or_earn == 1 ?'入账' : '消费')}}</text>
+                    <text class="font_bold text_right">{{item.sum_value}}￥</text>
+                </view>
+                
+                <view class="time_box">
+                    <view class="icon_box">
+                        <icon wx:if="{{ item.consumption_or_earn == 0 && item.account_type == 0 }}" style="color:#1AAD19" class="fa fa-apple fa-lg" />
+                        <icon wx:if="{{ item.consumption_or_earn == 0 && item.account_type == 1 }}" style="color:#1AAD19" class="fa fa-coffee fa-lg" />
+                        <icon wx:if="{{ item.consumption_or_earn == 0 && item.account_type == 2 }}" style="color:#1AAD19" class="fa fa-train fa-lg" />
+                        <icon wx:if="{{ item.consumption_or_earn == 0 && item.account_type == 3 }}" style="color:#1AAD19" class="fa fa-shopping-cart fa-lg" />
+                        <icon wx:if="{{ item.consumption_or_earn == 0 && item.account_type == 4 }}" style="color:#1AAD19" class="fa fa-clock fa-lg" />
+                        <icon wx:if="{{ item.consumption_or_earn == 0 && item.account_type == 5 }}" style="color:#1AAD19" class="fa fa-home fa-lg" />
+                        <icon wx:if="{{ item.consumption_or_earn == 0 && item.account_type == 6 }}" style="color:#1AAD19" class="fa fa-hospital fa-lg" />
+                        <icon wx:if="{{ item.consumption_or_earn == 0 && item.account_type == 7 }}" style="color:#1AAD19" class="fa fa-linkedin fa-lg" />
+                        <icon wx:if="{{ item.consumption_or_earn == 1 && item.account_type == 0 }}" style="color:#ff4949" class="fa fa-rmb fa-lg" />
+                        <icon wx:if="{{ item.consumption_or_earn == 1 && item.account_type == 1 }}" style="color:#ff4949" class="fa fa-gift fa-lg" />
+                        <icon wx:if="{{ item.consumption_or_earn == 1 && item.account_type == 2 }}" style="color:#ff4949" class="fa fa-linkedin fa-lg" />
+                    </view>
+                    
+                    <text>{{item.consumption_or_earn == 1 ? '入账' : '消费'}}时间：{{item.date}} {{item.time}}</text>
+                    <icon bindtap="delOne" data-index="{{index}}" type="clear" style="margin-top:10rpx;"size="18" color="#FF4949"/>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!--下方筛选的固定框-->
+<view class="fix_box">
+    <text style="color:#ff4949;">入账{{ earn_sum }}元</text>
+    <text style="color:#1AAD19;">消费{{ consum_sum}}元</text>
+    <text style="color:#ff4949;">余额{{ earn_sum - consum_sum }}元</text>
+</view>

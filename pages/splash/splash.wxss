@@ -1,0 +1,20 @@
+/* pages/splash/splash.wxss */
+swiper{
+    width: 100%;
+    height: 600px;
+}
+image{
+    width: 100%;
+    height: 100%;
+
+}
+.start {
+    position: absolute;
+    bottom: 200rpx;
+    left: 50%;
+    width: 300rpx;
+    margin-left: -150rpx;
+    background: #d9ffea;
+    color: black;
+    font-size: 40rpx;
+}

@@ -1,0 +1,86 @@
+<!--pages/account/earn/earn.wxml-->
+
+<view class="content">
+    <text class="text_blue">入账:</text>
+    <progress percent="0" stroke-width="1" />
+
+    <view class="section">
+        <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+            <view class="section__title">日期:</view>
+            <view class="right">
+                <text>{{date}}</text>
+                <icon class="fa fa-angle-right fa-fw"/> 
+            </view>
+        </picker>
+    </view>
+
+    <progress percent="0" stroke-width="2" />
+
+    <view class="section">
+        <picker mode="time" value="{{time}}" bindchange="bindTimeChange">
+            <view class="section__title">时间:</view>
+            <view class="right">
+                <text>{{time}}</text>
+                <icon class="fa fa-angle-right fa-fw"/> 
+            </view>
+        </picker>
+    </view>
+
+    <progress percent="0" stroke-width="2" />
+
+    <view class="section">
+        <picker value="{{account_type}}" bindchange="bindCountChange" range="{{account_type_arr}}">
+            <view class="section__title">入账类型:</view>
+            <view class="right">
+                 <text>{{account_type_arr[account_type]}}</text> 
+                <icon class="fa fa-angle-right fa-fw"/> 
+            </view>
+        </picker>
+    </view>
+
+    <progress percent="0" stroke-width="2" />
+
+    <!-- 数量 -->
+    <view class="section">
+        <view class="section__title">数量(个):</view>
+        <view class="text_right">
+            <input bindinput="bindAmount" type="digit" placeholder="" value="{{amount}}"/>
+        </view>
+    </view> 
+    <progress percent="0" stroke-width="2" />
+    <!-- 单价 -->
+    <view class="section">
+        <view class="section__title">单价(￥/):</view>
+        <view class="text_right">
+            <input bindinput="bindUnit" type="digit" placeholder="" value="{{unit_value}}"/>
+        </view>
+    </view> 
+    <progress percent="0" stroke-width="2" />
+
+    <!-- 金额 -->
+     <view class="section">
+        <view class="section__title">金额(￥):</view>
+        <view class="text_right">
+            <input bindinput="bindCountValue" type="digit" placeholder="" value="{{sum_value}}"/>
+        </view>
+    </view> 
+
+    <progress percent="0" stroke-width="2" />
+    
+    <!-- 备注 -->
+     <view class="section">
+        <view class="section__title">备注:</view>
+        <view class="text_right">
+            <input type="text" bindinput="bindRemarks" value="{{remarks_value}}"/>
+        </view>
+    </view> 
+
+    <progress percent="0" stroke-width="2" />
+
+    <view class="button_box">
+        <button type="primary" size="default" bindtap="submitData"> 确认 </button>
+    </view>
+    
+</view>
+
+

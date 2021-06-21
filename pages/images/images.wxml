@@ -1,0 +1,13 @@
+<!--pages/images/images.wxml-->
+<view>
+	<button type='primary' size="mini" bindtap='openCamera'>打开相册</button>
+
+	<block wx:for="{{imageList}}" wx:for-item="image" wx:key="image">
+		<image src='{{image}}' data-src="{{image}}" bindtap='previewImage'></image>
+	</block>
+
+	<view>
+		<button bindtap='chooseImg' type="warn" size="mini">chooseImg</button>
+		<button bindtap='saveImage' type="primary" size="mini">saveImage</button>
+	</view>
+</view>	

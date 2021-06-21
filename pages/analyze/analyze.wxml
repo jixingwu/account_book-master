@@ -1,0 +1,15 @@
+<!--pages/analyze/analyze.wxml-->
+<view class="">
+    <view class="chart-con">
+        <view class="chart-item">
+            <text class="chart-title">消费状况：</text>
+            <!-- <canvas canvas-id="consumption-chart" width="400" height="400"></canvas>  -->
+            <canvas canvas-id="consumption-chart"></canvas> 
+        </view>
+         <view class="chart-item">
+            <text class="chart-title">入账状况：</text>
+            <!-- <canvas canvas-id="earn-chart" width="400" height="400"></canvas> -->
+            <canvas canvas-id="earn-chart" ></canvas>
+        </view> 
+    </view>
+</view>

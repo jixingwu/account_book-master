@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<!--index.wxml-->
+<view class="container" style='background:url("../../images/back.jpg");'>
+    <view  bindtap="bindViewTap" class="userinfo">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </view>
+    <view class="usermotto" > 
+        <button type="warn" size="mini" bindtap="gotoComsumption"> 消费 </button>
+        <button type="primary" size="mini" bindtap="gotoEarn"> 入账  </button>  
+        <button type="primary" size="mini" bindtap="open"> goto pie  </button>  
+        <button type="primary" size="mini" bindtap="openMulTip"> goto multiCharts  </button>  
+        <!--<button type="warn" size="mini" bindtap="openImage"> goto camera  </button>  -->
+    </view> 
+</view>

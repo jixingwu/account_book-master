@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/account/account",
+    "pages/account/consumption/consumption",
+    "pages/account/earn/earn",
+    "pages/bill/bill",
+    "pages/analyze/analyze",
+    "pages/analyze2/index",
+    "pages/my/my",
+    "pages/pie/index",
+    "pages/multiCharts/index",
+    "pages/images/images"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#eeeeee"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-actived.png"
+      },
+      {
+        "pagePath": "pages/account/account",
+        "text": "记账",
+        "iconPath": "images/note.png",
+        "selectedIconPath": "images/note-actived.png"
+      },
+      {
+        "pagePath": "pages/bill/bill",
+        "text": "账单",
+        "iconPath": "images/star.png",
+        "selectedIconPath": "images/star-actived.png"
+      },
+      {
+        "pagePath": "pages/analyze/analyze",
+        "text": "分析",
+        "iconPath": "images/safari.png",
+        "selectedIconPath": "images/safari-actived.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
+}

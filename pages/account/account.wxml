@@ -1,0 +1,5 @@
+<!--account.wxml-->
+<view class="container" style='background:url("../../images/back.jpg");'> 
+    <button type="warn" size="mini" bindtap="gotoComsumption"> 消费 </button>
+    <button type="primary" size="mini" bindtap="gotoEarn"> 入账 </button>  
+</view> 
