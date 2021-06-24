@@ -9,8 +9,9 @@ Page({
     data: {
         date: Until.formatTime(new Date()).date,
         time: Until.formatTime(new Date()).time,
-        account_type_arr: ['玫瑰', '绣球', '百合', '向日葵', '雏菊', '剑兰', '自定义1', '自定义2'],
-        account_type: 0,
+        multiArray: [['玫瑰', '绣球', '百合', '向日葵', '雏菊', '剑兰', '肥料', '保鲜剂'], ["红色", "白色", "黄色", "橙色", "紫色", "咖啡色", "奥斯汀", "多头"]],
+        multiIndex: [0, 0],
+        objectMultiArray: [],
         //account_type_arr: ['微信收入', '淘宝收入', '京东收入', '现金收入', '其他'],
         //account_type: 0,
         amount: '',
@@ -33,11 +34,56 @@ Page({
         })
     },
 
-    // 入账类型
+/* //入账
     bindCountChange: function (e) {
         this.setData({
             account_type: e.detail.value
         })
+    },
+*/
+    bindMultiPickerChange: function(e){
+        this.setData({
+            multiIndex: e.detail.value
+        })
+    },
+    bindMultiPickerColumnChange: function(e){
+        var data = {
+            multiArray: this.data.multiArray,
+            multiIndex: this.data.multiIndex
+          }
+          data.multiIndex[e.detail.column] = e.detail.value;
+          switch (e.detail.column) {
+            case 0:
+              switch (data.multiIndex[0]) {
+                case 0://玫瑰
+                  data.multiArray[1] = ["红色", "白色", "黄色", "橙色", "紫色", "咖啡色", "奥斯汀", "多头"];
+                  break;
+                case 1:// 绣球
+                  data.multiArray[1] = ["0"];
+                  break;
+                case 2:// 百合
+                  data.multiArray[1] = ["白色东方", "粉色东方", "黄色东方", "白色亚洲", "黄色亚洲", "红色亚洲", "黑色亚洲", "重瓣"];
+                  break;
+                case 3:// 向日葵
+                  data.multiArray[1] = ["月光色", "红色", "黄色"];
+                  break;
+                case 4: //雏菊
+                  data.multiArray[1] = ["粉色", "红色", "黄色", "橘色", "绿色", "白色", "单头"];
+                  break;
+                case 5: // 剑兰
+                  data.multiArray[1] = ["0"];
+                  break;
+                case 6: // 肥料
+                  data.multiArray[1] = ["一号", "二号", "A2", "液体海藻肥", "黄腐酸钾", "硫酸亚铁", "磷酸二氢钾"];
+                  break;
+                case 7: // 保鲜剂
+                  data.multiArray[1] = ["TOG6", "TIG10", "保鲜剂", "灰霉水", "黄腐酸钾", "TOG STAR"];
+                  break;
+              }
+              data.multiIndex[1] = 0;
+              break;
+          }
+          this.setData(data);
     },
 
     // 数量

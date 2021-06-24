@@ -126,14 +126,15 @@ Page({
             _id: Date.parse(new Date()),
             date: this.data.date,
             time: this.data.time,
+            multiIndex: this.data.multiIndex,
             amount: this.data.amount,
             unit_value: this.data.unit_value,
             sum_value: this.data.sum_value,
             remarks_value: this.data.remarks_value,
-            //account_type: this.data.account_type,
-            billTypeNumber: this.billTypeNumber(this.data.account_type - 0),
+            //billTypeIndex: this.billTypeIndex(this.data.multiIndex),
             consumption_or_earn: 0
         };
+        //console.log("multiIndex: ", this.data.multiIndex, ", multiArray: ", this.data.multiArray[0][this.data.multiIndex[0], " ", this.data.multiArray[1][this.data.multiIndex[1]]]);
         this.data.oldStorageData.push(bill);
         wx.setStorage({
             key: "bill_arr",
@@ -143,35 +144,95 @@ Page({
         this.resetValue();
     },
 
+    billTypeName(multiIndex){
+        return this.data.multiArray;
+    },
+
     // 消费类型转换英文
-    billTypeNumber(account_type) {
-        switch (account_type) {
+    billTypeIndex(multiIndex) {
+        switch (multiIndex[0]) {
             case 0:
-                account_type = 'MG';
+                multiIndex[0] = 'MG';
+                switch (multiIndex[1]){
+                    case 0: multiIndex[1] = 'Red'; break;
+                    case 1: multiIndex[1] = 'White'; break;
+                    case 2: multiIndex[1] = 'Yellow'; break;
+                    case 3: multiIndex[1] = 'Orange'; break;
+                    case 4: multiIndex[1] = 'Purple'; break;
+                    case 5: multiIndex[1] = 'Coffee'; break;
+                    case 6: multiIndex[1] = 'Austin'; break;
+                    case 7: multiIndex[1] = 'multiple'; break;
+                }
                 break;
             case 1:
-                account_type = 'XQ';
+                multiIndex[0] = 'XQ';
+                switch (multiIndex[1]){
+                    case 0: multiIndex[1] = 'Zero'; break;
+                }
                 break;
             case 2:
-                account_type = 'BH';
+                multiIndex[0] = 'BH';
+                switch (multiIndex[1]){
+                    case 0: multiIndex[1] = 'WhiteOrient'; break;
+                    case 1: multiIndex[1] = 'PinkOrient'; break;
+                    case 2: multiIndex[1] = 'YellowOrient'; break;
+                    case 3: multiIndex[1] = 'WhiteAsia'; break;
+                    case 4: multiIndex[1] = 'YellowAsia'; break;
+                    case 5: multiIndex[1] = 'RedAsia'; break;
+                    case 6: multiIndex[1] = 'BlackAsia'; break;
+                    case 7: multiIndex[1] = 'multiple'; break;
+                }
                 break;
             case 3:
-                account_type = 'XRK';
+                multiIndex[0] = 'XRK';
+                switch (multiIndex[1]){
+                    case 0: multiIndex[1] = 'Moonlight'; break;
+                    case 1: multiIndex[1] = 'Red'; break;
+                    case 2: multiIndex[1] = 'Yellow'; break;
+                }
                 break;
             case 4:
-                account_type = 'CJ';
+                multiIndex[0] = 'CJ';
+                switch (multiIndex[1]){
+                    case 0: multiIndex[1] = 'Pink'; break;
+                    case 1: multiIndex[1] = 'Red'; break;
+                    case 2: multiIndex[1] = 'Yellow'; break;
+                    case 3: multiIndex[1] = 'Orange'; break;
+                    case 4: multiIndex[1] = 'Green'; break;
+                    case 5: multiIndex[1] = 'White'; break;
+                    case 6: multiIndex[1] = 'Single'; break;
+                }
                 break;
             case 5:
-                account_type = 'JL';
+                multiIndex[0] = 'JL';
+                switch (multiIndex[1]){
+                    case 0: multiIndex[1] = 'Zero'; break;
+                }
                 break;
             case 6:
-                account_type = 'C1';
+                multiIndex[0] = 'FL';
+                switch (multiIndex[1]){
+                    case 0: multiIndex[1] = 'Num1'; break;
+                    case 1: multiIndex[1] = 'Num2'; break;
+                    case 2: multiIndex[1] = 'A2'; break;
+                    case 3: multiIndex[1] = 'YTHZF'; break;
+                    case 4: multiIndex[1] = 'HFSJ'; break;
+                    case 5: multiIndex[1] = 'LSYT'; break;
+                    case 6: multiIndex[1] = 'LS2QJ'; break;
+                }
                 break;
             case 7:
-                account_type = 'C2';
+                multiIndex[0] = 'BXJ';
+                switch (multiIndex[1]){
+                    case 0: multiIndex[1] = 'TOG6'; break;
+                    case 1: multiIndex[1] = 'YIG10'; break;
+                    case 2: multiIndex[1] = 'BXJ'; break;
+                    case 3: multiIndex[1] = 'HMS'; break;
+                    case 4: multiIndex[1] = 'TOG STAR'; break;
+                }
                 break;
         }
-        return account_type;
+        return multiIndex;
     },
 
     // 显示记账成功提示
